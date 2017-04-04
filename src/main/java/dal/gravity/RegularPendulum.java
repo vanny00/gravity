@@ -3,7 +3,7 @@ package dal.gravity;
 /**
  * Represents a pendulum
  */
-public class RegularPendulum extends AbstractEarthPendulum {
+public class RegularPendulum extends AbstractEarthPendulum implements GravityModel{
 
 
     /**
@@ -30,6 +30,11 @@ public class RegularPendulum extends AbstractEarthPendulum {
 	lastVel = lastVel + lastAccel*delta;
 	lastAccel = - dissipation*lastVel - this.getGravitationalField () / this.getStringLength () * Math.sin (lastTheta);
     }
+
+	@Override
+	public void setGravitationalField(double g) {
+		this.g = g;
+	}
     
    
 
