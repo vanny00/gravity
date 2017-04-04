@@ -12,7 +12,7 @@ public class SimplePendulum extends AbstractEarthPendulum implements GravityMode
      * inMass: the point mass (>0)
      * inTheta0: angular displacement at t=0 (0<=theta0<=pi/6)
      */
-    public SimplePendulum (double inLength, double inMass, double inTheta0) {
+    public SimplePendulum (double inLength, double inMass, double inTheta0, double grav) {
 	super (inLength, inMass, inTheta0);
 	angularFrequency = Math.sqrt (this.getGravitationalField () / this.getStringLength ());
 	periodOfMotion = 2 * Math.PI 

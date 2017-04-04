@@ -15,8 +15,11 @@ public class PendulumRunner {
 	double delta = (args.length == 0) ? .1 : Double.parseDouble (args[0]);
 	double sLen = 10, pMass = 10, theta0 = Math.PI/30;
 	
+	GravityConstant earth = new GravityConstant(9.80665);
+	GravityConstant jupiter = new GravityConstant(25);
+	
 	RegularPendulum rp = new RegularPendulum (sLen, pMass, theta0, delta);
-	SimplePendulum sp = new SimplePendulum (sLen, pMass, theta0);
+	SimplePendulum sp = new SimplePendulum (sLen, pMass, theta0, theta0);
 	RegularPendulum rpCoarse = 
 	    new RegularPendulum (sLen, pMass, theta0, .1);
 
