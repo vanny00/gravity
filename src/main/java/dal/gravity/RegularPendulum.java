@@ -32,12 +32,14 @@ public class RegularPendulum extends AbstractEarthPendulum {
 	lastVel = lastVel + lastAccel*delta;
 	lastAccel = - dissipation*lastVel - this.getGravitationalField () / this.getStringLength () * Math.sin (lastTheta);
     }
-
+    
     public double getLastTheta () { return lastTheta; }
     public double getLastVelocity () { return lastVel; }
     public double getLastAcceleration () { return lastAccel; }
     public double getLastTime () { return iterations*delta; }
     public double getDissipationConstant () { return dissipation; }
+
+
     
 
 }

@@ -5,8 +5,7 @@ package dal.gravity;
  */
 public class SimplePendulum extends AbstractEarthPendulum {
 
-    private double angularFrequency, periodOfMotion;
-
+   
     /**
      * Creates a new Pendulum instance using
      * inLength: the string length (>0)
@@ -20,20 +19,9 @@ public class SimplePendulum extends AbstractEarthPendulum {
 	    * Math.sqrt (this.getStringLength () / this.getGravitationalField ());
     }
 
-    /**
-     * provides this Pendulum's angular frequency
-     */ 
-    public double getAngularFrequency () { return angularFrequency; }
 
-    /**
-     * provides this Pendulum's period of motion
-     */ 
-    public double getPeriodOfMotion () { return periodOfMotion; }
-
-    /**
-     * provides the angular displacement of this Pendulum at time t
-     */
-    public double getTheta (double t) {
-	return this.getMaxAngularDisplacement () * Math.cos (angularFrequency * t);
-    }
+    
+    
+    
+    
 }

@@ -12,7 +12,16 @@ public abstract class AbstractPendulum {
     private double stringLength, pointMass;
     protected double theta0; 
     protected double g; 
-
+    
+    protected double angularFrequency = Math.sqrt (this.getGravitationalField () / this.getStringLength ());
+	protected double periodOfMotion = 2 * Math.PI 
+		    * Math.sqrt (this.getStringLength () / this.getGravitationalField ());
+ 
+    private boolean validDisplacement (double val) { return (val >= 0); }
+    private boolean validPointMass (double val) { return (val > 0); }
+    private boolean validStringLength (double val) { return (val > 0); }
+    private boolean validGC (double val) { return (val >= 0); }
+   
     /**
      * Creates a new Pendulum instance using
      * inLength: the string length (>0)
@@ -20,29 +29,33 @@ public abstract class AbstractPendulum {
      * inTheta0: angular displacement at t=0 (0<=theta0)
      * inG: gravitational field value to use
      */
-    public AbstractPendulum (double inLength, double inMass, double inTheta0, double inG) {
-	if (validStringLength (inLength)) stringLength = inLength;
-	else throw new IllegalArgumentException ("invalid string length: " + inLength);
-	if (validPointMass(inMass)) pointMass = inMass;
-	else throw new IllegalArgumentException ("invalid point mass: " + inMass);
-	if (validDisplacement (inTheta0)) theta0 = inTheta0;
-	else throw new IllegalArgumentException 
-		 ("invalid angular displacement: " + inTheta0);
-	if (validGC (inG)) g = inG;
-	else throw new IllegalArgumentException ("invalid local gravitational field: " + inG);
+    public AbstractPendulum (double inLength, double inMass, double inTheta0, double inG){
+		if (validStringLength (inLength)){stringLength = inLength;}
+		else{throw new IllegalArgumentException ("invalid string length: " + inLength);}
+		if (validPointMass(inMass)){pointMass = inMass;}
+		else{throw new IllegalArgumentException ("invalid point mass: " + inMass);}
+		if (validDisplacement (inTheta0)){theta0 = inTheta0;}
+		else{throw new IllegalArgumentException ("invalid angular displacement: " + inTheta0);}
+		if (validGC (inG)){g = inG;}
+		else{throw new IllegalArgumentException ("invalid local gravitational field: " + inG);}
     }
-
-    private boolean validDisplacement (double val) { return (val >= 0); }
-    private boolean validPointMass (double val) { return (val > 0); }
-    private boolean validStringLength (double val) { return (val > 0); }
-    private boolean validGC (double val) { return (val >= 0); }
-
+    
     public double getMaxAngularDisplacement () { return theta0; }
-
     public double getPointMass () { return pointMass; }
-
     public double getStringLength () { return stringLength; }
-
     public double getGravitationalField () { return g; }
+    
+    
+    //provides this Pendulum's angular frequency
+    public double getAngularFrequency () { return angularFrequency; }
+    //provides this Pendulum's period of motion   
+    public double getPeriodOfMotion () { return periodOfMotion; }
+    //provides the angular displacement of this Pendulum at time t
+    
+    public double getTheta (double t) {
+	return this.getMaxAngularDisplacement () * Math.cos (this.getAngularFrequency() * t);
+    }
+    
+    
 
 }
