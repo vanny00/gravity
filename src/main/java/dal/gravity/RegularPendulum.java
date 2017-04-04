@@ -4,9 +4,7 @@ package dal.gravity;
  * Represents a pendulum
  */
 public class RegularPendulum extends AbstractEarthPendulum {
-    private double delta, iterations = 0;
-    private double dissipation;
-    private double lastTheta, lastVel, lastAccel;
+
 
     /**
      * Creates a new Pendulum instance 
@@ -33,11 +31,7 @@ public class RegularPendulum extends AbstractEarthPendulum {
 	lastAccel = - dissipation*lastVel - this.getGravitationalField () / this.getStringLength () * Math.sin (lastTheta);
     }
     
-    public double getLastTheta () { return lastTheta; }
-    public double getLastVelocity () { return lastVel; }
-    public double getLastAcceleration () { return lastAccel; }
-    public double getLastTime () { return iterations*delta; }
-    public double getDissipationConstant () { return dissipation; }
+   
 
 
     

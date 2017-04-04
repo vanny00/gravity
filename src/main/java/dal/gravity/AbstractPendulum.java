@@ -16,6 +16,11 @@ public abstract class AbstractPendulum {
     protected double angularFrequency = Math.sqrt (this.getGravitationalField () / this.getStringLength ());
 	protected double periodOfMotion = 2 * Math.PI 
 		    * Math.sqrt (this.getStringLength () / this.getGravitationalField ());
+	
+    protected double delta;
+	protected double iterations = 0;
+    protected double dissipation;
+    protected double lastTheta, lastVel, lastAccel;
  
     private boolean validDisplacement (double val) { return (val >= 0); }
     private boolean validPointMass (double val) { return (val > 0); }
@@ -55,6 +60,12 @@ public abstract class AbstractPendulum {
     public double getTheta (double t) {
 	return this.getMaxAngularDisplacement () * Math.cos (this.getAngularFrequency() * t);
     }
+    
+    public double getLastTheta () { return lastTheta; }
+    public double getLastVelocity () { return lastVel; }
+    public double getLastAcceleration () { return lastAccel; }
+    public double getLastTime () { return iterations*delta; }
+    public double getDissipationConstant () { return dissipation; }
     
     
 
